@@ -22,7 +22,7 @@ python newfacedata.py
 python trainer.py
 python facerecognition.py
 ```
-newfacedata.py captures the detected face from the webcam input and saves the images to /dataset. Make sure to use a unique IDs every time you enroll a new face. 
+newfacedata.py captures the detected face from the webcam input and saves the images to /dataset. Make sure to use a unique ID every time you enroll a new face. 
 
 Run trainer.py each time to generate the LBPH model after you capture new face data to /dataset
 
