@@ -1,10 +1,13 @@
+#Train a Local Binary Patterns (LBPH) model
+#from the labelled images in /dataset 
+#Save the model to a file.
 import os
 import cv2
 import numpy as np
 from PIL import Image
 
 recognizer = cv2.face.LBPHFaceRecognizer_create()
-path = 'dataSet'
+path = 'dataset'
 
 def processDataset(path):
 	imagePaths = [os.path.join(path,f) for f in os.listdir(path)]
@@ -12,6 +15,8 @@ def processDataset(path):
 	faceData = []
 	IDs = []
 	for imagePath in imagePaths:
+		if(imagePath == 'dataset/.gitkeep'):
+			break
 		faceimage = Image.open(imagePath).convert('L');
 		faceimageNParray = np.array(faceimage,'uint8')
 		ID = int(os.path.split(imagePath)[-1].split('.')[1])
@@ -24,5 +29,5 @@ def processDataset(path):
 
 IDs,faces=processDataset(path)
 recognizer.train(faces,np.array(IDs))
-recognizer.save('recognizer/trainedRecognizer.yml')
+recognizer.save('LBPHfacemodel.yml')
 cv2.destroyAllWindows()
